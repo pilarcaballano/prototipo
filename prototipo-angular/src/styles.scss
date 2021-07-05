@@ -1,0 +1,10 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~flag-icon-css/css/flag-icon.min';
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+  }

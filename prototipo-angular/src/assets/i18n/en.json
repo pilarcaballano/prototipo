@@ -1,0 +1,9 @@
+{
+  "label.titulo" : "E-mail communication for notification in inspection action",
+  "label.provincia" : "Province",
+  "label.os" : "Service Order",
+  "label.fecha.diligencia" : "Date of diligence",
+  "label.nif.empresa" : "Company NIF",
+  "label.email" : "Email",
+  "label.enviar" : "Send"
+}

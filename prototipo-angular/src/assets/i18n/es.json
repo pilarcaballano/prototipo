@@ -1,0 +1,9 @@
+{
+  "label.titulo" : "Comunicación correo electrónico para notificación en acción inspectora",
+  "label.provincia" : "Provincia",
+  "label.os" : "Orden de Servicio",
+  "label.fecha.diligencia" : "Fecha de diligencia",
+  "label.nif.empresa" : "NIF Empresa",
+  "label.email" : "Correo electrónico",
+  "label.enviar" : "Enviar"
+}
