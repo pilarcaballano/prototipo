@@ -1,8 +1,8 @@
-package es.mtas.itss.provincias.service;
+package es.mtas.itss.comunicacioncorreo.service;
 
 import java.util.List;
 
-import es.mtas.itss.provincias.model.Provincias;
+import es.mtas.itss.comunicacioncorreo.model.Provincias;
 
 public interface ServicioProvincias {
 

@@ -1,4 +1,4 @@
-package es.mtas.itss.provincias.model;
+package es.mtas.itss.comunicacioncorreo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
