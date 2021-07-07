@@ -18,7 +18,17 @@ public class ServicioComunicacionCorreoImpl implements ServicioComunicacionCorre
 	
 	public NotificacionCorreoElectronico guardarNotificacion(NotificacionCorreoElectronico nuevaNotificacion) {
 		
-		repository.save(nuevaNotificacion);
+//		Integer codigoNotificacion = repository.existeRegistro(nuevaNotificacion.getCodigoOS(), 
+//									nuevaNotificacion.getCodigoProvincia(), nuevaNotificacion.getFechaDiligencia(), 
+//									nuevaNotificacion.getNifEmpresa());
+		
+		Integer actualizado = repository.actualizarCorreo(nuevaNotificacion.getCorreoElectronico(),
+				nuevaNotificacion.getCodigoOS(), nuevaNotificacion.getCodigoProvincia(), 
+				nuevaNotificacion.getFechaDiligencia(), nuevaNotificacion.getNifEmpresa());
+											
+		if(actualizado == 0) {
+			repository.save(nuevaNotificacion);
+		} 
 		
 		return nuevaNotificacion;
 	}

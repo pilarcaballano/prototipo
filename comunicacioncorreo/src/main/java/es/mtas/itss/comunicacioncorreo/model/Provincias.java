@@ -3,8 +3,10 @@ package es.mtas.itss.comunicacioncorreo.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity (name = "Provincias")
+@Table(name = "provincias")
 public class Provincias {
 
 	@Id

@@ -20,13 +20,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxMaskModule } from 'ngx-mask'
 import {MAT_DATE_LOCALE} from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     PageNotFoundComponent,
-    CuadroMandoComponent
+    CuadroMandoComponent,
+    AcceptDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,7 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
     AgGridModule.withComponents([]),
     NgxMaskModule.forRoot(),
     MatToolbarModule,
+    MatDialogModule,
     MatSelectModule,
     MatInputModule,
     MatDatepickerModule,
