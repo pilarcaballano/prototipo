@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.mtas.itss.comunicacioncorreo.model.NotificacionCorreoElectronico;
+import es.mtas.itss.comunicacioncorreo.model.NotificacionCorreoElectronicoPendiente;
+import es.mtas.itss.comunicacioncorreo.repository.INotificacionCorreoElecPdtRepository;
 import es.mtas.itss.comunicacioncorreo.repository.INotificacionCorreoElecRepository;
 import es.mtas.itss.comunicacioncorreo.service.ServicioComunicacionCorreo;
 
@@ -14,6 +16,9 @@ public class ServicioComunicacionCorreoImpl implements ServicioComunicacionCorre
 
 	@Autowired
 	private INotificacionCorreoElecRepository repository;
+	
+	@Autowired
+	private INotificacionCorreoElecPdtRepository repositoryPendientes;
 	
 	
 	public NotificacionCorreoElectronico guardarNotificacion(NotificacionCorreoElectronico nuevaNotificacion) {
@@ -26,8 +31,8 @@ public class ServicioComunicacionCorreoImpl implements ServicioComunicacionCorre
 				nuevaNotificacion.getCodigoOS(), nuevaNotificacion.getCodigoProvincia(), 
 				nuevaNotificacion.getFechaDiligencia(), nuevaNotificacion.getNifEmpresa());
 											
-		if(actualizado == 0) {
-			repository.save(nuevaNotificacion);
+		if(actualizado == 0) {			
+			repositoryPendientes.save(nuevaNotificacion.pasarAPendiente());
 		} 
 		
 		return nuevaNotificacion;

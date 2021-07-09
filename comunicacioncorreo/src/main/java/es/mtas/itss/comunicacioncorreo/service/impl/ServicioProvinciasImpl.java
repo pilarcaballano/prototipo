@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,7 @@ public class ServicioProvinciasImpl implements ServicioProvincias {
 	public List<Provincias> obtenerProvincias(){
 		List<Provincias> provincias = new ArrayList<Provincias>();
 
-		provincias = provinciasRepository.findAll();
+		provincias = provinciasRepository.findAll(Sort.by(Sort.Direction.ASC, "descripcionProvincia"));
 
 		return provincias;
 	}

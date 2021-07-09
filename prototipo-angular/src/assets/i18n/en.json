@@ -5,5 +5,10 @@
   "label.fecha.diligencia" : "Date of diligence",
   "label.nif.empresa" : "Company NIF",
   "label.email" : "Email",
-  "label.enviar" : "Send"
+  "label.enviar" : "Send",
+  "label.campo.obligatorio" : "* This field is required",
+  "error.campo.obligatorio" : "This field is required",
+  "error.campo.email" : "The email is not in a correct format",
+  "error.formato.os" : "Wrong SO format",
+  "error.formato.nif" : "Incorrect identifier format"
 }

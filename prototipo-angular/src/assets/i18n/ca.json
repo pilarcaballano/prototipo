@@ -5,5 +5,10 @@
   "label.fecha.diligencia" : "Data de diligència",
   "label.nif.empresa" : "NIF Empresa",
   "label.email" : "Correu electrònic",
-  "label.enviar" : "Enviar"
+  "label.enviar" : "Enviar",
+  "label.campo.obligatorio" : "* Aquest camp és obligatori",
+  "error.campo.obligatorio" : "Aquest camp és obligatori",
+  "error.campo.email" : "El correu electrònic no té un format correcte",
+  "error.formato.os" : "Format incorrecte d'OS",
+  "error.formato.nif" : "Format d'identificador incorrecte"
 }

@@ -4,16 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity (name = "NotificacionCorreoElectronico")
-@Table(name = "notificacion_correo_electronico")
-public class NotificacionCorreoElectronico {
+@Entity (name = "NotificacionCorreoElectronicosPendiente")
+@Table(name = "notificacion_correo_electronico_pendiente")
+public class NotificacionCorreoElectronicoPendiente {
 
-	@Id
-	@Column(name = "n_cod_notificacion")
-	private Integer codigoNotificacion;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "n_cod_notificacion_pdt")
+	private Integer codigoNotificacionPdt;
 	@Column(name = "n_cod_provincia")
 	private Integer codigoProvincia;
 	@Column(name = "c_cod_os")
@@ -26,17 +28,17 @@ public class NotificacionCorreoElectronico {
 	private String correoElectronico;
 
 	/**
-	 * @return the codigoNotificacion
+	 * @return the codigoNotificacionPdt
 	 */
-	public Integer getCodigoNotificacion() {
-		return codigoNotificacion;
+	public Integer getCodigoNotificacionPdt() {
+		return codigoNotificacionPdt;
 	}
 
 	/**
-	 * @param codigoNotificacion the codigoNotificacion to set
+	 * @param codigoNotificacionPdt the codigoNotificacionPdt to set
 	 */
-	public void setCodigoNotificacion(Integer codigoNotificacion) {
-		this.codigoNotificacion = codigoNotificacion;
+	public void setCodigoNotificacionPdt(Integer codigoNotificacionPdt) {
+		this.codigoNotificacionPdt = codigoNotificacionPdt;
 	}
 
 	/**
@@ -109,10 +111,21 @@ public class NotificacionCorreoElectronico {
 		this.correoElectronico = correoElectronico;
 	}
 
-	public NotificacionCorreoElectronico(Integer codigoNotificacion, Integer codigoProvincia, String codigoOS,
+	public NotificacionCorreoElectronicoPendiente(Integer codigoNotificacionPdt, Integer codigoProvincia, String codigoOS,
 			Date fechaDiligencia, String nifEmpresa, String correoElectronico) {
 		super();
-		this.codigoNotificacion = codigoNotificacion;
+		this.codigoNotificacionPdt = codigoNotificacionPdt;
+		this.codigoProvincia = codigoProvincia;
+		this.codigoOS = codigoOS;
+		this.fechaDiligencia = fechaDiligencia;
+		this.nifEmpresa = nifEmpresa;
+		this.correoElectronico = correoElectronico;
+	}
+	
+	public NotificacionCorreoElectronicoPendiente(Integer codigoProvincia, String codigoOS,
+			Date fechaDiligencia, String nifEmpresa, String correoElectronico) {
+		super();
+		
 		this.codigoProvincia = codigoProvincia;
 		this.codigoOS = codigoOS;
 		this.fechaDiligencia = fechaDiligencia;
@@ -120,17 +133,7 @@ public class NotificacionCorreoElectronico {
 		this.correoElectronico = correoElectronico;
 	}
 
-	public NotificacionCorreoElectronico() {
+	public NotificacionCorreoElectronicoPendiente() {
 		super();
-	}
-
-	public NotificacionCorreoElectronicoPendiente pasarAPendiente() {
-		return new NotificacionCorreoElectronicoPendiente(
-				this.getCodigoProvincia(),
-				this.getCodigoOS(), 
-				this.getFechaDiligencia(),
-				this.getNifEmpresa(),
-				this.getCorreoElectronico());
-		
 	}
 }
