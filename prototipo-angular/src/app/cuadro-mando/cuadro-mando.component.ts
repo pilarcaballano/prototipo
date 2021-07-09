@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
+
 @Component({
   selector: 'protangu-cuadro-mando',
   templateUrl: './cuadro-mando.component.html',
@@ -10,6 +11,8 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 })
 export class CuadroMandoComponent implements OnInit {
 
+  mostrarDetallePendientes!: boolean;
+  mostrarTablaPendientes!: boolean;
   // private gridApi;
   // private gridColumnApi;
   defaultColDef : any;
@@ -48,7 +51,22 @@ export class CuadroMandoComponent implements OnInit {
 
   
   ngOnInit(): void {
+    this.mostrarDetallePendientes = false;
+    this.mostrarTablaPendientes = false;
   }
+
+  activarDetallePendientes(){
+    this.mostrarDetallePendientes = !this.mostrarDetallePendientes;
+    if(this.mostrarTablaPendientes){
+      this.mostrarTablaPendientes = false;
+    }
+  }
+
+  activarTablaPendientes(){
+    this.mostrarTablaPendientes = !this.mostrarTablaPendientes;
+  }
+
+  
 
   
 }

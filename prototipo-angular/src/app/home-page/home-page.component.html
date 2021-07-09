@@ -55,7 +55,7 @@
     <div>
       <mat-form-field appearance="fill" class="W450 H80">
         <mat-label>{{'label.os' | translate}}</mat-label>
-        <input matInput formControlName="codigoOS" required>
+        <input matInput formControlName="codigoOS" required maxlength="14">
         <mat-error *ngIf="hasError('codigoOS', 'required')">
           {{'error.campo.obligatorio' | translate}}
         </mat-error>
@@ -71,7 +71,7 @@
       <mat-form-field appearance="fill" class="W450 H80">
         <mat-label>{{'label.fecha.diligencia' | translate}}</mat-label>
         <input matInput [matDatepicker]="picker"
-        formControlName="fechaDiligencia" required>
+        formControlName="fechaDiligencia" required maxlength="10">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="hasError('fechaDiligencia', 'required')">
@@ -104,7 +104,7 @@
           {{'error.campo.email' | translate}}
         </mat-error>
       </mat-form-field>
-      <div class="W550">
+      <div>
         <p style="font-style: italic; font-size: 10px;">
           {{'label.campo.obligatorio' | translate}}
         </p>

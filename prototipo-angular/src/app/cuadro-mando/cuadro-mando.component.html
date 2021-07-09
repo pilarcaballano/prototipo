@@ -1,13 +1,69 @@
-<h2>Cuadro de mando</h2>
+<div style="text-align: center;">
+    <button mat-raised-button color="primary" 
+        style="width: 200px; height: 100px;"
+        (click)="activarDetallePendientes()">
+          Solicitudes Email
+        </button>         
+</div>
 
-<ag-grid-angular
-    style="width: 100%; height: 450px"
+<div style="text-align: center;margin-top: 40px;"
+    *ngIf="mostrarDetallePendientes==true">
+    <button mat-raised-button color="primary" 
+        style="width: 200px; height: 100px; margin-right: 20px;">
+          Solicitudes aprobadas
+        </button>         
+
+    <button mat-raised-button color="primary" 
+        style="width: 200px; height: 100px; margin-right: 20px;">
+          Solicitudes rechazadas
+        </button>         
+
+    <button mat-raised-button color="primary" 
+        style="width: 200px; height: 100px;"
+        (click)="activarTablaPendientes()">
+          Solicitudes pendientes 
+        </button>         
+  
+</div>
+
+<div *ngIf="mostrarTablaPendientes==true">
+    <p style="text-align: center;">Solicitudes Pendientes</p>
+    <ag-grid-angular
+    style="width: 100%; height: 300px; margin-top: 10px"
     class="ag-theme-alpine"
     [rowData]="rowData"
     [columnDefs]="columnDefs"
     [defaultColDef]="defaultColDef"
 >
 </ag-grid-angular>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h2>Cuadro de mando</h2> -->
+
+<!-- <ag-grid-angular
+    style="width: 100%; height: 450px"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+>
+</ag-grid-angular> -->
 
 <!-- 
 <ag-grid-angular
