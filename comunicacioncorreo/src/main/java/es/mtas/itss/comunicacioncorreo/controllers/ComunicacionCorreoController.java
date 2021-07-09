@@ -22,8 +22,6 @@ public class ComunicacionCorreoController {
 	ServicioComunicacionCorreo servicioComCorreo;
 	
 	
-//	@RequestMapping(value="/comunicacioncorreo", method=RequestMethod.GET)
-//	public @ResponseBody String comunicacioncorreo() throws InterruptedException, ExecutionException, IOException {
 	@RequestMapping(value="/comunicacioncorreo", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody NotificacionCorreoElectronico crearNotificacionCE(@RequestBody NotificacionCorreoElectronico nuevaNotificacion) throws InterruptedException, ExecutionException, IOException {
 	

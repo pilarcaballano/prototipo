@@ -123,7 +123,7 @@ public class NotificacionCorreoElectronico {
 	public NotificacionCorreoElectronico() {
 		super();
 	}
-
+	
 	public NotificacionCorreoElectronicoPendiente pasarAPendiente() {
 		return new NotificacionCorreoElectronicoPendiente(
 				this.getCodigoProvincia(),
@@ -131,6 +131,6 @@ public class NotificacionCorreoElectronico {
 				this.getFechaDiligencia(),
 				this.getNifEmpresa(),
 				this.getCorreoElectronico());
-		
+
 	}
 }

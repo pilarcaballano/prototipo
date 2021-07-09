@@ -21,7 +21,7 @@ public class ServicioProvinciasImpl implements ServicioProvincias {
 
 	public List<Provincias> obtenerProvincias(){
 		List<Provincias> provincias = new ArrayList<Provincias>();
-
+		
 		provincias = provinciasRepository.findAll(Sort.by(Sort.Direction.ASC, "descripcionProvincia"));
 
 		return provincias;
