@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.mtas.itss.comunicacioncorreo.model.NotificacionCorreoElectronico;
+import es.mtas.itss.comunicacioncorreo.model.NotificacionCorreoElectronicoPendiente;
 import es.mtas.itss.comunicacioncorreo.repository.INotificacionCorreoElecPdtRepository;
 import es.mtas.itss.comunicacioncorreo.repository.INotificacionCorreoElecRepository;
 import es.mtas.itss.comunicacioncorreo.service.ServicioComunicacionCorreo;
@@ -21,11 +22,7 @@ public class ServicioComunicacionCorreoImpl implements ServicioComunicacionCorre
 	
 	
 	public NotificacionCorreoElectronico guardarNotificacion(NotificacionCorreoElectronico nuevaNotificacion) {
-		
-//		Integer codigoNotificacion = repository.existeRegistro(nuevaNotificacion.getCodigoOS(), 
-//									nuevaNotificacion.getCodigoProvincia(), nuevaNotificacion.getFechaDiligencia(), 
-//									nuevaNotificacion.getNifEmpresa());
-		
+	
 		Integer actualizado = repository.actualizarCorreo(nuevaNotificacion.getCorreoElectronico(),
 				nuevaNotificacion.getCodigoOS(), nuevaNotificacion.getCodigoProvincia(), 
 				nuevaNotificacion.getFechaDiligencia(), nuevaNotificacion.getNifEmpresa());
@@ -35,5 +32,14 @@ public class ServicioComunicacionCorreoImpl implements ServicioComunicacionCorre
 		}
 		
 		return nuevaNotificacion;
+	}
+	
+	public NotificacionCorreoElectronico aceptarNotificacionPendiente(NotificacionCorreoElectronico notifPdte) {		
+		repository.actualizarCorreoAceptada(notifPdte.getCorreoElectronico(),
+				notifPdte.getCodigoOS(), notifPdte.getCodigoProvincia(), 
+				notifPdte.getFechaDiligencia(), notifPdte.getNifEmpresa());
+		repositoryPendientes.eliminarNotificacionPendiente(notifPdte.getCodigoNotificacion());
+		return notifPdte;
+		
 	}
 }

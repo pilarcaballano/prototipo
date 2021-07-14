@@ -1,6 +1,8 @@
 package es.mtas.itss.comunicacioncorreo.controllers;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,18 @@ public class ComunicacionCorreoController {
 	
 	@RequestMapping(value="/comunicacioncorreo", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody NotificacionCorreoElectronico crearNotificacionCE(@RequestBody NotificacionCorreoElectronico nuevaNotificacion) throws InterruptedException, ExecutionException, IOException {
-	
-//		nuevaNotificacion.setCodigoNotificacion(2);
-		
+			
 		return servicioComCorreo.guardarNotificacion(nuevaNotificacion);
+	}
+	
+	@RequestMapping(value="/aceptarNotificacion", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody NotificacionCorreoElectronico aceptarNotificacion(@RequestBody List<NotificacionCorreoElectronico> notificacionPendiente) {
 		
+		for (Iterator<NotificacionCorreoElectronico> iterator = notificacionPendiente.iterator(); iterator.hasNext();) {
+			servicioComCorreo.aceptarNotificacionPendiente((NotificacionCorreoElectronico) iterator.next());
+			
+		} 
 		
+		return notificacionPendiente.get(notificacionPendiente.size()-1);
 	}
 }

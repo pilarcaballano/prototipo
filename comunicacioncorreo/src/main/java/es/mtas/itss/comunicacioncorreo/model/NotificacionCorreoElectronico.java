@@ -133,4 +133,15 @@ public class NotificacionCorreoElectronico {
 				this.getCorreoElectronico());
 
 	}
+
+	public NotificacionCorreoElectronico pasarAAceptada(NotificacionCorreoElectronicoPendiente nPendiente) {
+		
+		return new NotificacionCorreoElectronico(
+				nPendiente.getCodigoNotificacion(),
+				nPendiente.getCodigoProvincia(),
+				nPendiente.getCodigoOS(), 
+				nPendiente.getFechaDiligencia(),
+				nPendiente.getNifEmpresa(),
+				nPendiente.getCorreoElectronico());
+	}
 }

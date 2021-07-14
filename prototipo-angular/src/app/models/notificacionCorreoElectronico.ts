@@ -5,6 +5,6 @@ export interface NotificacionCorreoElectronico{
     fechaDiligencia: string;
     nifEmpresa: string;
     correoElectronico: string;
-
+    desProvincia: string;
     
 }

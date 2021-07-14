@@ -8,7 +8,7 @@ import { ComunicacioncorreoService } from '../core/comunicacioncorreo.service'
 import { NotificacionCorreoElectronico } from '../models/notificacionCorreoElectronico';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AcceptDialogComponent } from '../accept-dialog/accept-dialog.component';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from "rxjs";
 
@@ -54,7 +54,8 @@ export class HomePageComponent implements OnInit {
       codigoOS: "",
       fechaDiligencia: "",
       nifEmpresa: "",
-      correoElectronico: ""
+      correoElectronico: "",
+      desProvincia: ""
     };
   }
 
@@ -72,7 +73,7 @@ export class HomePageComponent implements OnInit {
     if(this.nuevaNotCEForm.valid){
       this.notificacionCorreoElectronico = this.nuevaNotCEForm.value;
       this.comcorreo.crearNotificacionCE(this.notificacionCorreoElectronico)
-                    .pipe(catchError(this.handleError))
+                    .pipe(retry(3), catchError(this.handleError))
                     .subscribe((notificacionCorreoElectronico: NotificacionCorreoElectronico) => {
                       this.openDialog();
                                           

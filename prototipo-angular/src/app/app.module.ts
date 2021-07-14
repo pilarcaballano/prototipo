@@ -22,6 +22,8 @@ import { NgxMaskModule } from 'ngx-mask'
 import {MAT_DATE_LOCALE} from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { SolicitudesPdtsComponent } from './solicitudes-pdts/solicitudes-pdts.component';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
     HomePageComponent,
     PageNotFoundComponent,
     CuadroMandoComponent,
-    AcceptDialogComponent
+    AcceptDialogComponent,
+    SolicitudesPdtsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
     HttpClientModule,
     AgGridModule.withComponents([]),
     NgxMaskModule.forRoot(),
+    MatGridListModule,
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,

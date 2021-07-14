@@ -1,41 +1,38 @@
+<mat-toolbar color="primary" style="text-align: center;">
+  <div style="margin-left: 30%;"></div>
+  <!-- <span class="flexExpand"></span> -->
+  <div>
+    <p >Gestión de comunicaciones de correo electrónico</p>
+  </div>
+</mat-toolbar>
 <div style="text-align: center;">
     <button mat-raised-button color="primary" 
-        style="width: 200px; height: 100px;"
+        matTooltip="Últimos 7 días"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        class="acelerador"
         (click)="activarDetallePendientes()">
-          Solicitudes Email
+          Solicitudes Email ({{numSolicitudes}})
         </button>         
 </div>
 
-<div style="text-align: center;margin-top: 40px;"
+<div style="text-align: center;"
     *ngIf="mostrarDetallePendientes==true">
-    <button mat-raised-button color="primary" 
-        style="width: 200px; height: 100px; margin-right: 20px;">
-          Solicitudes aprobadas
+    <!-- <button mat-raised-button color="primary" 
+        class="acelerador">
+          Solicitudes aprobadas (0)
         </button>         
 
     <button mat-raised-button color="primary" 
-        style="width: 200px; height: 100px; margin-right: 20px;">
-          Solicitudes rechazadas
-        </button>         
+        class="acelerador">
+          Solicitudes rechazadas (0)
+        </button>          -->
 
     <button mat-raised-button color="primary" 
-        style="width: 200px; height: 100px;"
-        (click)="activarTablaPendientes()">
-          Solicitudes pendientes 
+        class="acelerador"
+        (click)="mostrarTablaPendientes()">
+          Solicitudes pendientes ({{numSolPendientes}})
         </button>         
   
-</div>
-
-<div *ngIf="mostrarTablaPendientes==true">
-    <p style="text-align: center;">Solicitudes Pendientes</p>
-    <ag-grid-angular
-    style="width: 100%; height: 300px; margin-top: 10px"
-    class="ag-theme-alpine"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [defaultColDef]="defaultColDef"
->
-</ag-grid-angular>
 </div>
 
 

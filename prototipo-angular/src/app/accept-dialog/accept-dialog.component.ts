@@ -7,9 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./accept-dialog.component.scss']
 })
 export class AcceptDialogComponent implements OnInit {
-
-  constructor(
-    public dialogRef: MatDialogRef<AcceptDialogComponent>) {}
+  constructor(public dialogRef: MatDialogRef<AcceptDialogComponent>) {}
 
   aceptar(): void {
     this.dialogRef.close();

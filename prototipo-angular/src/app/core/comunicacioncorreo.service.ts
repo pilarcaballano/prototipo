@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { NotificacionCorreoElectronico } from '../models/notificacionCorreoElectronico';
-import { throwError } from "rxjs";
+import { pipe, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { MatDialog } from '@angular/material/dialog';
 import { AcceptDialogComponent } from '../accept-dialog/accept-dialog.component';
@@ -35,15 +35,46 @@ export class ComunicacioncorreoService {
       .post(environment.apiURL + "comunicacioncorreo", notificacionCorreoElec, { headers });
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AcceptDialogComponent, {
-      width: '450px'
+  getSolicitudesPendientes(): Observable<any> {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    return this.http.get(environment.apiURL + "solicitudes-pendientes", {headers});
   }
 
-  
+  async getNumSolicitudesPendientes(): Promise<any> {
+    const headers = new HttpHeaders({
+      "Content-Type": "text",
+    });
+
+    return this.http.get(environment.apiURL + "num-solicitudes-pendientes", {headers}).toPromise();
+  }
+
+  async getNumSolicitudes(): Promise<any> {
+    const headers = new HttpHeaders({
+      "Content-Type": "text",
+    });
+
+    return this.http.get(environment.apiURL + "num-solicitudes-pendientes", {headers})
+    .toPromise();
+  }
+
+  aceptarNotificacionCE(notificacionesCorreoElec: any): Observable<any> {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+    });
+
+    return this.http
+      .post(environment.apiURL + "aceptarNotificacion", notificacionesCorreoElec, { headers });
+  }
+
+  rechazarNotificacionCE(notificacionesCorreoElec: any): Observable<any> {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+    });
+
+    return this.http
+      .post(environment.apiURL + "rechazarNotificacion", notificacionesCorreoElec, { headers });
+  }
 }
