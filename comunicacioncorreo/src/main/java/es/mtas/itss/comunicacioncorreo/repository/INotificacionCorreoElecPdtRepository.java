@@ -16,11 +16,10 @@ public interface INotificacionCorreoElecPdtRepository extends JpaRepository<Noti
 	@Query(value = "SELECT "
 			+ "ncep.n_cod_notificacion, "
 			+ "ncep.n_cod_provincia, "
-			+ "(SELECT p.des_provincia FROM provincias p WHERE p.n_cod_provincia = ncep.n_cod_provincia) "
-			+ "as des_provincia, "
+			+ "(SELECT p.des_provincia FROM provincias p WHERE p.n_cod_provincia = ncep.n_cod_provincia) as des_provincia, "
 			+ "ncep.c_cod_os, "
 			+ "ncep.d_fecha_diligencia, "
-			+ "DATE(ncep.d_fecha_diligencia), "
+//			+ "DATE(ncep.d_fecha_diligencia), "
 			+ "ncep.c_cod_nif_empresa, "
 			+ "ncep.des_correo_electronico "
 			+ "FROM notificacion_correo_electronico_pendiente ncep", nativeQuery = true)

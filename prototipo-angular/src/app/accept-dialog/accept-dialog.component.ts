@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'protangu-accept-dialog',
@@ -7,7 +7,9 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./accept-dialog.component.scss']
 })
 export class AcceptDialogComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<AcceptDialogComponent>) {}
+
+  constructor(public dialogRef: MatDialogRef<AcceptDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public textos: any) {}
 
   aceptar(): void {
     this.dialogRef.close();

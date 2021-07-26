@@ -4,8 +4,9 @@ import es.mtas.itss.comunicacioncorreo.model.NotificacionCorreoElectronico;
 
 public interface ServicioComunicacionCorreo {
 	
-	NotificacionCorreoElectronico guardarNotificacion(NotificacionCorreoElectronico nuevaNotificacion);
+	NotificacionCorreoElectronico guardarNotificacion(NotificacionCorreoElectronico nuevaNotificacion) throws Exception;
 	
-	NotificacionCorreoElectronico aceptarNotificacionPendiente(NotificacionCorreoElectronico notifPdte);
+	Integer aceptarNotificacionPendiente(NotificacionCorreoElectronico notifPdte);
 
+	Boolean esNifNieErroneo(String valor);
 }

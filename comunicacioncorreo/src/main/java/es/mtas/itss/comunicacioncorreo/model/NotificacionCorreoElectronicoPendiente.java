@@ -1,5 +1,6 @@
 package es.mtas.itss.comunicacioncorreo.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,7 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity (name = "NotificacionCorreoElectronicosPendiente")
 @Table(name = "notificacion_correo_electronico_pendiente")
@@ -20,14 +26,23 @@ public class NotificacionCorreoElectronicoPendiente {
 	private Integer codigoProvincia;
 	@Column(name = "c_cod_os")
 	private String codigoOS;
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	@Column(name = "d_fecha_diligencia")
 	private Date fechaDiligencia;
 	@Column(name = "c_cod_nif_empresa")
 	private String nifEmpresa;
 	@Column(name = "des_correo_electronico")
 	private String correoElectronico;
-	@Column(name = "des_provincia", insertable = false, updatable = false)
+
+	@ManyToOne
+    @JoinColumn(name ="n_cod_provincia", referencedColumnName ="n_cod_provincia", insertable =false, updatable =false)
+    private Provincias provincia;
+	
+	@Transient 
 	private String desProvincia;
+	
+	@Transient 
+	private String strFechaDiligencia;
 
 	/**
 	 * @return the codigoNotificacion
@@ -123,7 +138,7 @@ public class NotificacionCorreoElectronicoPendiente {
 		this.fechaDiligencia = fechaDiligencia;
 		this.nifEmpresa = nifEmpresa;
 		this.correoElectronico = correoElectronico;
-		this.desProvincia = desProvincia;
+//		this.desProvincia = desProvincia;
 	}
 	
 	public NotificacionCorreoElectronicoPendiente(Integer codigoProvincia, String codigoOS,
@@ -141,11 +156,28 @@ public class NotificacionCorreoElectronicoPendiente {
 		super();
 	}
 
+	public Provincias getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincias provincia) {
+		this.provincia = provincia;
+	}
+
 	public String getDesProvincia() {
-		return desProvincia;
+		return provincia.getDescripcionProvincia();
 	}
 
 	public void setDesProvincia(String desProvincia) {
-		this.desProvincia = desProvincia;
+		this.provincia.setDescripcionProvincia(desProvincia);
+	}
+
+	public String getStrFechaDiligencia() {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		return format.format(fechaDiligencia);
+	}
+
+	public void setStrFechaDiligencia(String strFechaDiligencia) {
+		this.strFechaDiligencia = strFechaDiligencia;
 	}
 }

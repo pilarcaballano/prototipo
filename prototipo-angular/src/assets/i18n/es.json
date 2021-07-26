@@ -10,6 +10,7 @@
   "error.campo.obligatorio" : "Este campo es obligatorio",
   "error.campo.email" : "El correo electrónico no tiene un formato correcto",
   "error.formato.os" : "Formato incorrecto de OS",
-  "error.formato.nif" : "Formato de identificador incorrecto"
+  "error.formato.nif" : "Formato de identificador incorrecto",
+  "error.validez.nif" : "El NIF no es válido"
   
 }

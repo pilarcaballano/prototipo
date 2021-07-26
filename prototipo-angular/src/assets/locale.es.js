@@ -1,4 +1,4 @@
-export const AG_GRID_LOCALE_ES = {
+const AG_GRID_LOCALE_ES = {
     // Set Filter
     selectAll: '(Seleccionar Todos)',
     selectAllSearchResults: '(Seleccionar todos los resultados)',
@@ -108,7 +108,10 @@ export const AG_GRID_LOCALE_ES = {
     lastPage: 'Última Página',
     firstPage: 'Primera Página',
     previousPage: 'Página Anterior'
-}
 
-export const REGISTRO_ACEPTADO = 1;
-export const REGISTRO_NO_ACEPTADO = 0;
+   
+
+    
+
+    
+}

@@ -1,3 +1,5 @@
+import { Provincia } from "./provincia";
+
 export interface NotificacionCorreoElectronico{
     codigoNotificacion: number;
     codigoProvincia: number;
@@ -6,5 +8,5 @@ export interface NotificacionCorreoElectronico{
     nifEmpresa: string;
     correoElectronico: string;
     desProvincia: string;
-    
+    strFechaDiligencia: string;
 }

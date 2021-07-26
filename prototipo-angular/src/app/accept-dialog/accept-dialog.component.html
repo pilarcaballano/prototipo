@@ -1,7 +1,7 @@
-<h2 matDialogTitle>Operación realizada</h2>
+<h2 matDialogTitle>{{textos.titulo}}</h2>
 <div mat-dialog-content>
-  <p>Su petición ha sido enviada y será procesada.</p>
+  <p>{{textos.cuerpo}}</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-button color="primary" (click)="aceptar()">Aceptar</button>
+    <button mat-button color="primary" (click)="aceptar()">{{textos.boton}}</button>
   </div>

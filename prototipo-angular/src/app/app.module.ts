@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -25,7 +25,6 @@ import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SolicitudesPdtsComponent } from './solicitudes-pdts/solicitudes-pdts.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +40,8 @@ import { SolicitudesPdtsComponent } from './solicitudes-pdts/solicitudes-pdts.co
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    // OAuthModule.forRoot(),    
+    // LocalStorageService,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -63,7 +64,11 @@ import { SolicitudesPdtsComponent } from './solicitudes-pdts/solicitudes-pdts.co
     MatButtonModule,
     MatIconModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  // ,
+  // { provide: HTTP_INTERCEPTORS, useClass: UniversalAppInterceptor, multi: true }
+],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

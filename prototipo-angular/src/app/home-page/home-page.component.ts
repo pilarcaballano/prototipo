@@ -11,6 +11,7 @@ import { AcceptDialogComponent } from '../accept-dialog/accept-dialog.component'
 import { catchError, retry } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from "rxjs";
+import { HomePageNifValidator } from './home-page-nif-validator';
 
 @Component({
   selector: 'protangu-home-page',
@@ -39,6 +40,7 @@ export class HomePageComponent implements OnInit {
               private comcorreo: ComunicacioncorreoService,
               private dialog: MatDialog,
               private fb: FormBuilder,
+              private homePageNifValidator: HomePageNifValidator,
               private router: Router,
               private route: ActivatedRoute) {
     this.translate.setDefaultLang(this.activeLang);
@@ -55,7 +57,9 @@ export class HomePageComponent implements OnInit {
       fechaDiligencia: "",
       nifEmpresa: "",
       correoElectronico: "",
-      desProvincia: ""
+      desProvincia:  "",
+      strFechaDiligencia: ""
+      
     };
   }
 
@@ -73,7 +77,6 @@ export class HomePageComponent implements OnInit {
     if(this.nuevaNotCEForm.valid){
       this.notificacionCorreoElectronico = this.nuevaNotCEForm.value;
       this.comcorreo.crearNotificacionCE(this.notificacionCorreoElectronico)
-                    .pipe(retry(3), catchError(this.handleError))
                     .subscribe((notificacionCorreoElectronico: NotificacionCorreoElectronico) => {
                       this.openDialog();
                                           
@@ -102,8 +105,10 @@ export class HomePageComponent implements OnInit {
       codigoProvincia: [null, [Validators.required]],
       codigoOS: [null, [Validators.required, Validators.pattern('[0-9]{1,2}\/[0-9]{7}\/[0-9]{2}')]],
       fechaDiligencia: [null,[Validators.required]],
-      nifEmpresa: [null,[Validators.required,
-                      Validators.pattern('^[0-9]{8}[a-zA-Z]{1}$')]],
+      nifEmpresa: [null,Validators.compose([Validators.required,
+                      Validators.pattern('^[0-9]{8}[a-zA-Z]{1}$')]),
+                      this.homePageNifValidator.validate.bind(this.homePageNifValidator)],
+                      
       correoElectronico: [null, [Validators.required, Validators.email]]
     });
   }
@@ -116,7 +121,10 @@ export class HomePageComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AcceptDialogComponent, {
-      width: '450px'
+      width: '450px',
+      data: { titulo: 'Operación completada',
+              cuerpo: 'Su petición ha sido enviada y será procesada.',
+              boton: 'Aceptar' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -124,12 +132,9 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  private handleError(error: HttpErrorResponse) {
-    window.alert(`Se ha producido un error inesperado`);
-    return throwError("Something bad happened; please try again later.");
-  }
-
   public hasError = (controlName: string, errorName: string) =>{
+    // console.log(controlName + " " +this.nuevaNotCEForm.controls[controlName].hasError(errorName)
+    // + ": " + errorName);
     return this.nuevaNotCEForm.controls[controlName].hasError(errorName);
   }
 }

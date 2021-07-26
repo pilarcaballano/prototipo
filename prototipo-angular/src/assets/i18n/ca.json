@@ -10,5 +10,6 @@
   "error.campo.obligatorio" : "Aquest camp és obligatori",
   "error.campo.email" : "El correu electrònic no té un format correcte",
   "error.formato.os" : "Format incorrecte d'OS",
-  "error.formato.nif" : "Format d'identificador incorrecte"
+  "error.formato.nif" : "Format d'identificador incorrecte",
+  "error.validez.nif" : "El NIF no és vàlid"
 }

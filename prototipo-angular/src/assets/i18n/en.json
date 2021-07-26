@@ -10,5 +10,6 @@
   "error.campo.obligatorio" : "This field is required",
   "error.campo.email" : "The email is not in a correct format",
   "error.formato.os" : "Wrong SO format",
-  "error.formato.nif" : "Incorrect identifier format"
+  "error.formato.nif" : "Incorrect identifier format",
+  "error.validez.nif" : "The NIF is not valid"
 }

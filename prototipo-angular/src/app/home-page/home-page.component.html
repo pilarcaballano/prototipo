@@ -82,14 +82,20 @@
     </div>
 
     <div>
-      <mat-form-field appearance="fill" class="W450 H80">
+      <mat-form-field appearance="fill" class="W450 H80" >
         <mat-label>{{'label.nif.empresa' | translate}}</mat-label>
         <input matInput formControlName="nifEmpresa" required maxlength="9">
         <mat-error *ngIf="hasError('nifEmpresa', 'required')">
           {{'error.campo.obligatorio' | translate}}
         </mat-error>
-        <mat-error *ngIf="hasError('nifEmpresa', 'pattern')">
+        <mat-error *ngIf="nuevaNotCEForm.controls.nifEmpresa.hasError('pattern')">
           {{'error.formato.nif' | translate}}
+        </mat-error>
+        <mat-error *ngIf="nuevaNotCEForm.controls.nifEmpresa.hasError('homePageValidator')">
+          {{'error.validez.nif' | translate}}
+        </mat-error>
+        <mat-error *ngIf="nuevaNotCEForm.controls.nifEmpresa.hasError('homePageValidatorPat')">
+          Patrón
         </mat-error>
       </mat-form-field>
     </div>
