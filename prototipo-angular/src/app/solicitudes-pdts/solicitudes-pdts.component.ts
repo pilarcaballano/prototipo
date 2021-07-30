@@ -69,8 +69,7 @@ export class SolicitudesPdtsComponent implements OnInit {
   }
 
   gestionarBotonAceptar(){
-    console.log(this);
-      this.mostrarBoton = this.gridApi.getSelectedRows().length > 0 ? false : true;
+    this.mostrarBoton = this.gridApi.getSelectedRows().length > 0 ? false : true;
   }
 
   aceptarNotificacion(){
@@ -82,6 +81,7 @@ export class SolicitudesPdtsComponent implements OnInit {
         //Recargamos el listado
         this.comcorreo.getSolicitudesPendientes().subscribe((data) => {
           this.rowData = data;
+          
         }); 
       }
       else{
@@ -97,8 +97,9 @@ export class SolicitudesPdtsComponent implements OnInit {
       this.openDialog(2);
       this.comcorreo.getSolicitudesPendientes().subscribe((data) => {
         this.rowData = data;
-      });     
+        });
     });
+    
   }
 
   openDialog(tipoAccion: number): void {
@@ -110,6 +111,10 @@ export class SolicitudesPdtsComponent implements OnInit {
                       'Los datos de la solicitud no existen.',
               boton: (tipoAccion == 0) ? 'Aceptar' : 'Cerrar'
             }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.gestionarBotonAceptar();
     });
   }
 
