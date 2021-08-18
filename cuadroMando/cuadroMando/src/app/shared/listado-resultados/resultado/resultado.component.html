@@ -1,0 +1,20 @@
+<mat-card matRipple>
+    <mat-card-header>
+        <!-- Titulo con navegacion-->
+        <mat-card-title *ngIf="title && titleRouterLink"
+            [routerLink]="titleRouterLink" class="link">{{title}}
+        </mat-card-title>
+
+        <!-- Titulo sin navegacion-->
+        <mat-card-title *ngIf="title && !titleRouterLink">{{title}}
+        </mat-card-title>
+        
+        <!-- Subtitulo -->
+        <mat-card-subtitle *ngIf="subtitle">{{subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- Contenido de la tarjeta -->
+    <mat-card-content [class]="class">
+        <ng-content></ng-content>
+    </mat-card-content>
+</mat-card>

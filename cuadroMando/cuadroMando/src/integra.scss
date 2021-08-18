@@ -1,0 +1,77 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$md-coral: (
+    50 : #fff0ea,
+    100 : #ffd9cb,
+    200 : #ffbfa8,
+    300 : #ffa585,
+    400 : #ff926a,
+    500 : #ff7f50,
+    600 : #ff7749,
+    700 : #ff6c40,
+    800 : #ff6237,
+    900 : #ff4f27,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffdbd4,
+    A700 : #ffc6bb,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+/* For use in src/lib/core/theming/_palette.scss */
+$md-yellow: (
+    50 : #fef9e3,
+    100 : #fdf1ba,
+    200 : #fbe88c,
+    300 : #f9df5d,
+    400 : #f8d83b,
+    500 : #f7d118,
+    600 : #f6cc15,
+    700 : #f5c611,
+    800 : #f3c00e,
+    900 : #f1b508,
+    A100 : #ffffff,
+    A200 : #fff8e6,
+    A400 : #ffe9b3,
+    A700 : #ffe29a,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* ======== Angular material custom themes ======== */ 
+$my-custom-primary: mat-palette($md-coral);
+$my-custom-accent: mat-palette($md-yellow, 500, 700, A100);
+$my-custom-warn: mat-palette($mat-red);
+
+$my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+
+@include angular-material-theme($my-custom-theme);

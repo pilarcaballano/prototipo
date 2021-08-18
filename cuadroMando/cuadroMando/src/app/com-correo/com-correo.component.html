@@ -1,0 +1,129 @@
+<div class="container" id="para">
+  <form
+    novalidate
+    [formGroup]="nuevaNotCEForm"
+    #myForm="ngForm"
+    *ngIf="nuevaNotCEForm"
+  >
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>  
+        <div >
+          <a mat-button (click)="changeFont('+')">A+</a>
+          <a mat-button (click)="changeFont('-')">A-</a>
+        </div>
+        <span class="flexExpand"></span>
+        <div >
+          <a mat-button [ngClass]="{'active': activeLang == 'es'}" 
+             (click)="cambiarLenguaje('es')">
+             <span class="flag-icon flag-icon-es"></span>
+          </a>
+          <a mat-button [ngClass]="{'active': activeLang == 'ca'}" 
+          (click)="cambiarLenguaje('ca')">
+            <span class="flag-icon flag-icon-es-ca"></span>
+          </a>
+          <a mat-button [ngClass]="{'active': activeLang == 'ga'}" 
+          (click)="cambiarLenguaje('ga')">
+            <span class="flag-icon flag-icon-es-ga"></span>
+          </a>
+          <a mat-button [ngClass]="{'active': activeLang == 'en'}" 
+          (click)="cambiarLenguaje('en')">
+            <span class="flag-icon flag-icon-gb"></span>
+          </a>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="title">
+      <h2>{{'label.titulo' | translate }} </h2>
+    </div>
+   
+    <!-- Campo Provincias -->
+    <div>
+      <mat-form-field appearance="fill" class="W450 H80">
+        <mat-label>{{'label.provincia' | translate }}</mat-label>
+        <mat-select id="id" formControlName="codigoProvincia" required>
+          <mat-option *ngFor="let selectedProv of provincias" [value]="selectedProv.id">
+            {{selectedProv.descProvincia}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('codigoProvincia', 'required')">
+          {{'error.campo.obligatorio' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+   
+    <div>
+      <mat-form-field appearance="fill" class="W450 H80">
+        <mat-label>{{'label.os' | translate }}</mat-label>
+        <input matInput formControlName="codigoOS" required maxlength="14">
+        <mat-error *ngIf="hasError('codigoOS', 'required')">
+          {{'error.campo.obligatorio' | translate }}
+        </mat-error>
+        <mat-error *ngIf="hasError('codigoOS', 'pattern')">
+          {{'error.formato.os' | translate }}
+        </mat-error>
+      </mat-form-field>
+      
+    </div>
+    
+
+    <div>
+      <mat-form-field appearance="fill" class="W450 H80">
+        <mat-label>{{'label.fecha.diligencia' | translate }}</mat-label>
+        <input matInput [matDatepicker]="picker"
+        formControlName="fechaDiligencia" required maxlength="10">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="hasError('fechaDiligencia', 'required')">
+          {{'error.campo.obligatorio' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill" class="W450 H80" >
+        <mat-label>{{'label.nif.empresa' | translate }}</mat-label>
+        <input matInput formControlName="nifEmpresa" required maxlength="9">
+        <mat-error *ngIf="hasError('nifEmpresa', 'required')">
+          {{'error.campo.obligatorio' | translate }}
+        </mat-error>
+        <mat-error *ngIf="nuevaNotCEForm.controls.nifEmpresa.hasError('pattern')">
+          {{'error.formato.nif' | translate }}
+        </mat-error>
+        <mat-error *ngIf="nuevaNotCEForm.controls.nifEmpresa.hasError('comCorreoValidator')">
+          {{'error.validez.nif' | translate }}
+        </mat-error>
+        <mat-error *ngIf="nuevaNotCEForm.controls.nifEmpresa.hasError('comCorreoValidatorPat')">
+          Patrón
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill" class="W450 H80">
+        <mat-label>{{'label.email' | translate }}</mat-label>
+        <input matInput formControlName="correoElectronico" required>
+        <mat-error *ngIf="hasError('correoElectronico', 'required')">
+          {{'error.campo.obligatorio' | translate }}
+        </mat-error>
+        <mat-error *ngIf="hasError('correoElectronico', 'email')">
+          {{'error.campo.email' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <p style="font-style: italic; font-size: 10px;">
+          {{'label.campo.obligatorio' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <button mat-raised-button color="primary"
+     
+      type="button"
+      (click)="guardarNotificacionCE()">
+        {{'label.enviar' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

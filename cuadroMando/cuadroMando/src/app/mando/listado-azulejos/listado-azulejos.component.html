@@ -1,0 +1,25 @@
+<div class="cuadro-container">
+    <!--Listado azulejos para OS-->
+    <cuadro-azulejo 
+        *ngFor="let azulejo of listaAzulejosOS" 
+        [title]="azulejo.title"
+        [total]="azulejo.total"
+        (click)="getOS(azulejo.estadoID)">
+    </cuadro-azulejo>
+
+</div>
+
+
+<cuadro-azulejo class="centrado" title="Actas" (click)="activarAzulejosActas()">
+
+</cuadro-azulejo>
+
+<div class="cuadro-container" *ngIf="flagMostrarAzulejos === true">
+    <!--Listado azulejos para Actas-->
+    <cuadro-azulejo 
+        *ngFor="let azulejo of listaAzulejosActas" 
+        [title]="azulejo.title"
+        [total]="azulejo.total"
+        (click)="getActas(azulejo.estadoID)">
+    </cuadro-azulejo>
+</div>

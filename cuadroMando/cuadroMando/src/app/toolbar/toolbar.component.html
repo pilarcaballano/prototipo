@@ -1,0 +1,39 @@
+<mat-sidenav-container fullscreen autosize>
+    <!--Menu Lateral-->
+    <mat-sidenav #menu class="sidenav-menu">
+        <mat-nav-list class="sidenav-menu-list" >
+            <!-- Inicio -->
+            <a mat-list-item routerLink="/home" (click)="menu.toggle()"><mat-icon>home</mat-icon><span>Inicio</span></a>
+            
+            <mat-divider></mat-divider>
+            <div class="sidenav-header">Programación y Campañas</div>
+            <a mat-list-item routerLink="/programacionObjetivos/objetivos" (click)="menu.toggle()"><mat-icon>task_alt</mat-icon><span>Planificación de Objetivos</span></a>
+            <a mat-list-item routerLink="/programacionObjetivos/campanias" (click)="menu.toggle()"><mat-icon>supervisor_account</mat-icon><span>Campañas</span></a>
+            
+            <mat-divider></mat-divider>
+            <div class="sidenav-header">Acción Inspectora</div>
+            <a mat-list-item routerLink="/consultaOS" (click)="menu.toggle()"><mat-icon>assignment</mat-icon><span>Consulta Orden de Servicio</span></a>
+            <a mat-list-item routerLink="/detalleOrden" (click)="menu.toggle()"><mat-icon>add</mat-icon><span>Nueva Orden de Servicio</span></a>
+            <a mat-list-item routerLink="/detalleActas" (click)="menu.toggle()"><mat-icon>assignment_ind</mat-icon><span>Acta de Liquidación</span></a>
+            <a mat-list-item routerLink="/detalleActas" (click)="menu.toggle()"><mat-icon>assignment_late</mat-icon><span>Acta de Infracción</span></a>
+            
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <!--Cabecera ITSS Integra -->
+    <div class="toolbar-header-container">
+        <img src="../../assets/img/itss.png" class="toolbar-itss-logo">
+        <span class="integra" routerLink="/home" >
+            <span class="middle-text">int<span class="accent">e</span>gra</span>
+        </span>
+    </div>
+
+    <!--Barra de navegacion superior -->
+    <mat-toolbar class="toolbar-container mat-elevation-z5" color="primary">
+        <button mat-icon-button aria-label="Abrir menu de navegación" (click)="menu.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <ng-content></ng-content>
+</mat-sidenav-container>

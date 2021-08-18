@@ -1,0 +1,17 @@
+@import './variables.scss';
+
+/* Tablas genericas aplicación */
+table.color-primary{
+    border-radius: $border-radius-1;
+    
+    th {
+        background-color: $primary-color;
+        color: $text-primary-color;
+        font-size: $text-medium;
+    }
+}
+
+/* Tamaños */
+.w100 { width: 100%; }
+
+

@@ -1,0 +1,7 @@
+<!-- Contenedor de azulejos -->
+<cuadro-listado-azulejos (listaOS)="setOS($event)" (listaActas)=abrirDialogoActas($event)></cuadro-listado-azulejos>
+
+<!--Contenedor de OS-->
+<div class="mando-os-container ">
+    <cuadro-listado-os *ngIf="listaOS[0]" [listadoOS]="listaOS"></cuadro-listado-os>
+</div>

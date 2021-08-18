@@ -1,0 +1,28 @@
+<!--Icon-->
+<button mat-icon-button *ngIf="type === 'icon'" (click)="back($event)" [color]="color" [matTooltip]="text">
+    <mat-icon>{{icon}}</mat-icon>
+</button>
+
+<!--Basic-->
+<button mat-button *ngIf="type === 'basic'" (click)="back($event)" [color]="color">
+    <mat-icon>{{icon}}</mat-icon>
+    {{text}}
+</button>
+
+<!--Raised-->
+<button mat-raised-button *ngIf="type === 'raised'" (click)="back($event)" [color]="color">
+    <mat-icon>{{icon}}</mat-icon>
+    {{text}}
+</button>
+
+<!--Stroked-->
+<button mat-stroked-button *ngIf="type === 'stroked'" (click)="back($event)" [color]="color">
+    <mat-icon>{{icon}}</mat-icon>
+    {{text}}
+</button>
+
+<!--Flat-->
+<button mat-flat-button *ngIf="type === 'flat'" (click)="back($event)" [color]="color">
+    <mat-icon>{{icon}}</mat-icon>
+    {{text}}
+</button>

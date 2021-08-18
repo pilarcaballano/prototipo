@@ -1,0 +1,9 @@
+<div class="mando grid">
+    <cuadro-azulejo *ngFor="let a of azulejosOS" [title]="a.title" [total]="a.total"(click)="abrirDialogoOS(a)"></cuadro-azulejo>
+</div>
+
+<cuadro-azulejo title="Actas" class="centrado" (click)="mostrarOcultarActas()"></cuadro-azulejo>
+
+<div class="mando grid" *ngIf="flagMostrarActas">
+    <cuadro-azulejo *ngFor="let a of azulejosActas" [title]="a.title" [total]="a.total" (click)="abrirDialogoActas(a)"></cuadro-azulejo>
+</div>

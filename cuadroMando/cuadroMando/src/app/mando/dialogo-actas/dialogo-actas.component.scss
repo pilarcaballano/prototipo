@@ -1,0 +1,12 @@
+.dialog-actas-close {
+    float: right;
+    cursor: pointer;
+    font-size: 30px;
+    color: #000;
+    transition: all 0.2s;
+
+    &:hover{
+        color: #f00;
+        text-shadow: 0px 0px 3px #f00;
+    }
+}

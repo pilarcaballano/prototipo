@@ -1,0 +1,65 @@
+@import "../../../shared/variables.scss";
+
+.grid-container {
+    margin: 10px auto auto auto;
+    padding: 0 25px;
+    display: grid;
+    grid-template-columns: auto 350px;
+    grid-template-areas: 
+        "header header"
+        "results filters";
+
+    > div {
+        padding: 5px;
+    }
+
+    > .grid-results {
+        grid-area: results;
+    }
+
+    > .grid-filters {
+        grid-area: filters;
+    }
+}
+#os-header {
+    grid-area: header;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#filters-container{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+    padding-top: 12px;
+
+    > .filter {
+        width: 100%;
+        flex-grow: 0;
+    } 
+}
+
+@media (max-width: 1200px) {
+    .grid-container {
+        margin: 25px auto auto auto;
+        padding: 0 25px;
+        display: grid;
+        grid-template-columns: 100%;//repeat(3, 100% [col-start]);
+        grid-template-areas: 
+            "header"
+            "filters"
+            "results";
+    }
+
+    #filters-container{
+        > .filter {
+            width: 300px;
+            flex-grow: 1;
+        } 
+    }
+}
+
+//Barra de filtros superior
+#filter-input{
+    width: 100%;
+}

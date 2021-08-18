@@ -1,0 +1,70 @@
+<mat-icon class="close-icon" [mat-dialog-close]="true" class="boton-dialogo-cerrar">close</mat-icon>
+
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>Selección de Actuantes</h1>
+
+<!-- Filtros de busqueda rapida -->
+<div mat-dialog-content>
+    <form class="filter-container" novalidate [formGroup]="filtros" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <!-- Campo Nombre -->
+        <mat-form-field>
+            <input matInput placeholder="Nombre" type="text" formControlName="nombre" />
+        </mat-form-field>
+        <!-- Campo Apellido1 -->
+        <mat-form-field>
+            <input matInput placeholder="Primer Apellido" type="text" formControlName="apellido1" />
+        </mat-form-field>
+        <!-- Campo Apellido2 -->
+        <mat-form-field>
+            <input matInput placeholder="Segundo Apellido" type="text" formControlName="apellido2" />
+        </mat-form-field>
+        <button mat-icon-button matTooltip="Cancela el alta de la Orden de Servicio.">
+            <mat-icon>search</mat-icon>
+        </button>
+    </form>
+
+
+    <div class="table-container mat-elevation-z5 ">
+        <!-- Tabla de actuantes -->
+        <table mat-table class="cuadro-listado-actas color-primary w100 table" [dataSource]="usuarios">
+            <!--Columna check-->
+            <ng-container matColumnDef="selection">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let user" class="col-check">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(user) : null"
+                        [checked]="selection.isSelected(user)"></mat-checkbox>
+                </td>
+            </ng-container>
+
+            <!--Columna nombre-->
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let user" class="col-nombre">{{user.nombre}}</td>
+            </ng-container>
+
+            <!--Columna apellido-->
+            <ng-container matColumnDef="primerApellido">
+                <th mat-header-cell *matHeaderCellDef>Primer Apellido</th>
+                <td mat-cell *matCellDef="let user" class="col-apellido">{{user.apellido1}}</td>
+            </ng-container>
+
+            <!--Columna segundo apellido-->
+            <ng-container matColumnDef="segundoApellido">
+                <th mat-header-cell *matHeaderCellDef>Segundo Apellido</th>
+                <td mat-cell *matCellDef="let user" class="col-apellido2">{{user.apellido2}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky="true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
+        </table>
+    </div>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChange($event)" class="paginator">
+    </mat-paginator>
+
+    <!--Contenedor de botones-->
+    <div class="button-container">
+        <button mat-button color="accent" [mat-dialog-close]="true">Cancelar</button>
+        <button mat-button color="primary" [mat-dialog-close]="selection.selected"
+            [disabled]="selection.isEmpty()">Seleccionar</button>
+    </div>
+</div>

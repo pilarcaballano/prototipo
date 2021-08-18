@@ -1,0 +1,74 @@
+{
+  "listaOS": [
+    {
+      "id": "8/0000001/21",
+      "estado": "Iniciada",
+      "estadoID": 1,
+      "fechaCreacion": "2021-07-21",
+      "actuantes": "Arriaga Caballero Antonio",
+      "usuarioCreacion": "Actuante",
+      "provincia": "Barcelona"    },
+    {
+      "id": "28/0000001/21",
+      "estado": "Iniciada",
+      "estadoID": 1,
+      "fechaCreacion": "2021-12-15",
+      "actuantes": "Chuque Mera Annya Mireya",
+      "usuarioCreacion": "ADMIN_CENTRAL",
+      "provincia": "Madrid"    },
+    {
+      "id": "6/0000001/21",
+      "estado": "Generada",
+      "estadoID": 0,
+      "fechaCreacion": "2021-08-21",
+      "actuantes": "Montaño Saldívar Moisés",
+      "usuarioCreacion": "JEFE_INSPECCION",
+      "provincia": "Badajoz"    },
+    {
+      "id": "24/0000001/21",
+      "estado": "Pdte. Envío PF",
+      "estadoID": 4,
+      "fechaCreacion": "2021-08-21",
+      "actuantes": "Tejedor García Belén",
+      "usuarioCreacion": "JEFE_EQUIPO",
+      "provincia": "León"    }
+  ],
+"listaActas": [
+    {
+      "id": "Act0001",
+      "naturaleza": "Falta de alta",
+      "estado": "Tramite",
+      "estadoID": 1,
+      "fechaCreacion": "2021-12-21",
+      "actuantes": "Arriaga Caballero Antonio",
+      "usuarioCreacion": "Actuante",
+      "provincia": "Barcelona"    },
+   {
+      "id": "Act0002",
+      "naturaleza": "Diferencias de cotización en bases",
+      "estado": "Borrador",
+      "estadoID": 0,
+      "fechaCreacion": "2021-07-21",
+      "actuantes": "Cascales Miralles Iván",
+      "usuarioCreacion": "Actuante",
+      "provincia": "Alicante"},
+{
+      "id": "Act0003",
+      "naturaleza": "Diferencias de cotización en bases",
+      "estado": "Borrador",
+      "estadoID": 0,
+      "fechaCreacion": "2021-07-21",
+      "actuantes": " Maldonado Fernández Iván",
+      "usuarioCreacion": "Actuante",
+      "provincia": "Cantabria"},
+ {
+      "id": "Act0004",
+      "naturaleza": "Falta de alta",
+      "estado": "Tramite",
+      "estadoID": 1,
+      "fechaCreacion": "2021-12-21",
+      "actuantes": "Abad Picado Alejandro",
+      "usuarioCreacion": "Actuante",
+      "provincia": "Asturias"    }
+  ]
+}

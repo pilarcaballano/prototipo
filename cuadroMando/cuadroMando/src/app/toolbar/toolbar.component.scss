@@ -1,0 +1,63 @@
+@import "../shared/variables.scss";
+.toolbar- {
+    &header-container {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        background-color: #ffffff;
+        height: 66px;
+        position: relative;
+
+        > .integra {     
+            align-self: center; /* Centrado vertical respecto al flex padre */
+
+            display: flex;
+            flex-flow: column nowrap;
+            text-align: center;
+            color: #6d6d6d;
+            padding: 0 20px;
+            cursor: pointer;
+
+            > .upper-text {
+                margin-bottom: -3px;
+                font-size: 12px;
+            }
+
+            > .middle-text {
+                font-size: 40px;
+                font-family: serif;
+                
+                > .accent {
+                    color: coral;
+                    font-style: italic;
+                    font-weight: bold;
+                }
+            }
+            > .botton-text {
+                margin-top: 7px;
+                font-size: 12px;
+            }
+        }
+    }
+
+    &container {
+        height: 50px;
+        gap: 5px;
+    }
+}
+
+.sidenav-menu {
+    ::ng-deep .mat-list-item-content {
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .sidenav-header {
+        font-size: 16px;
+        line-height: 35px;
+        font-weight: bold;
+        padding: 0px 16px;
+        height: 35px;
+    }
+}

@@ -1,0 +1,20 @@
+@import './app/shared/shared.scss';
+@import '~flag-icon-css/css/flag-icon.min';
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.boton-dialogo-cerrar {
+    float: right;
+    cursor: pointer;
+    font-size: 30px;
+    color: #000;
+    transition: all 0.2s;
+
+    &:hover{
+        color: #f00;
+        text-shadow: 0px 0px 3px #f00;
+    }
+}

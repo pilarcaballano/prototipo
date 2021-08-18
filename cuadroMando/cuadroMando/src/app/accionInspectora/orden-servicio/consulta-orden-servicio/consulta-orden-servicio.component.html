@@ -1,0 +1,134 @@
+<form novalidate [formGroup]="consultaOS" #fform="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="grid-container">
+        <!-- Titulos de las columnas -->
+        <h1 id="os-header">Consulta de Ordenes de Servicio</h1>
+
+        <!-- Contenedor de resultados-->
+        <div class="grid-results">
+            <!--Input de filtros-->
+            <mat-form-field class="selected-filters" appearance="outline" id="filter-input">
+                <mat-label>Filtros</mat-label>
+
+                <!-- Las patatillas -->
+                <mat-chip-list #filterList aria-label="Video keywords" multiple>
+                    <mat-chip [selectable]="'true'" [removable]="'true'">
+                        OS: 52/0000012/21
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+                <!--Boton Borrar filtros -->
+                <button matSuffix mat-icon-button color="warn" matTooltip="Limpiar Filtros">
+                    <mat-icon>backspace</mat-icon>
+                </button>
+                <!--Boton Buscar-->
+                <button matSuffix mat-icon-button matTooltip="Consultar Ordenes de Servicio">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-divider></mat-divider>
+            <!-- Resultados -->
+            <cuadro-listado-resultados>
+                <!-- Tarjeta de resultados -->
+                <cuadro-resultado *ngFor="let os of listadoOrdenesServicio" [routerLink]="['/detalleOrden', os.id]"
+                    [title]="os.id" [subtitle]="'Estado: '+ os.estado.estado">
+
+                    <!-- Dato Actuante -->
+                    <cuadro-dato-resultado title="Actuante" style="width: 200px">
+                        {{os.actuante.nombre}} {{os.actuante.apellido1}} {{os.actuante.apellido2}}
+                    </cuadro-dato-resultado>
+
+                    <!-- Dato Usuario Creacion -->
+                    <cuadro-dato-resultado title="Usuario Creación" style="width: 200px">
+                        {{os.usuarioCreacion.nombre}} {{os.usuarioCreacion.apellido1}} {{os.usuarioCreacion.apellido2}}
+                    </cuadro-dato-resultado>
+
+                    <!-- Dato Fecha Creacion -->
+                    <cuadro-dato-resultado title="Fecha Creacion" style="width: 200px">
+                        {{os.fechaCreacion | date}}
+                    </cuadro-dato-resultado>
+
+                    <!-- Dato Provincia -->
+                    <cuadro-dato-resultado title="Provincia" style="width: 200px">
+                        {{os.provincia.descProvincia}}
+                    </cuadro-dato-resultado>
+                </cuadro-resultado>
+            </cuadro-listado-resultados>
+        </div>
+
+        <!--Contenedor de filtros-->
+        <div class="grid-filters">
+            <h2 id="filter-header">Filtros</h2>
+            <form novalidate [formGroup]="consultaOS" #fform="ngForm" id="filters-container" (ngSubmit)="onSubmit()">
+                <!-- Filtro Orden de Servicio -->
+                <mat-form-field class="filter" appearance="fill" id="filter-input">
+                    <mat-label>Orden de Servicio</mat-label>
+                    <input matInput formControlName="id">
+                    <button matSuffix mat-icon-button matTooltip="Añadir filtro" matTooltipPosition="left">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <!-- Filtro Estado -->
+                <mat-form-field class="filter" appearance="fill" id="filter-input">
+                    <mat-label>Estado</mat-label>
+                    <mat-select matSelect placeholder="Estado" type="text" formControlName="idEstado">
+                        <mat-option>Selecciona un Estado</mat-option>
+                        <mat-option *ngFor="let estados of estados" [value]="estados.estadoID">{{estados.estado}}
+                        </mat-option>
+                    </mat-select>
+                    <button matSuffix mat-icon-button matTooltip="Añadir filtro" matTooltipPosition="left">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <!-- Filtro Provincia -->
+                <mat-form-field class="filter" appearance="fill" id="filter-input">
+                    <mat-label>Provincia</mat-label>
+                    <mat-select matSelect placeholder="Provincia" type="text" formControlName="idProvincia">
+                        <mat-option>Selecciona una provincia</mat-option>
+                        <mat-option *ngFor="let provincia of provincias" [value]="provincia.id">
+                            {{provincia.descProvincia}}
+                        </mat-option>
+                    </mat-select>
+                    <button matSuffix mat-icon-button matTooltip="Añadir filtro" matTooltipPosition="left">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <!-- Filtro Actuante -->
+                <mat-form-field class="filter" appearance="fill" id="filter-input">
+                    <mat-label>Actuante</mat-label>
+                    <cuadro-control-actuante *ngIf="!campoActuante.value" matSuffix
+                        (actuanteSeleccionado)="asignarActuante($event)">
+                    </cuadro-control-actuante>
+                    <button *ngIf="campoActuante.value" matSuffix mat-icon-button
+                        aria-label="Clear" (click)="borrarActuante($event)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <input matInput readonly formControlName="actuante">
+                    <button matSuffix mat-icon-button matTooltip="Añadir filtro" matTooltipPosition="left">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <!-- Filtro Usuario Creacion -->
+                <mat-form-field class="filter" appearance="fill" id="filter-input">
+                    <mat-label>Usuario Creacion</mat-label>
+                    <input matInput readonly formControlName="usuarioCreacion">
+                    <cuadro-control-actuante *ngIf="!campoUsuarioCreacion.value" matSuffix
+                        (actuanteSeleccionado)="asignarUsuarioCreacion($event)">
+                    </cuadro-control-actuante>
+                    <button *ngIf="campoUsuarioCreacion.value" matSuffix mat-icon-button
+                        aria-label="Clear" (click)="borrarUsuarioCreacion($event)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <button matSuffix mat-icon-button matTooltip="Añadir filtro" matTooltipPosition="left">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+</form>

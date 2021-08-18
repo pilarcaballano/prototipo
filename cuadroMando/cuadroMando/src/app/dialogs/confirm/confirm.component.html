@@ -1,0 +1,12 @@
+<mat-icon class="close-icon" [mat-dialog-close]="false" class="boton-dialogo-cerrar">close</mat-icon>
+
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>{{title}}</h1>
+
+<div mat-dialog-content>
+    <!--Contenedor de botones-->
+    <p>{{content}}</p>
+    <div class="button-container">
+        <button mat-button color="primary" [mat-dialog-close]="true"><mat-icon>done</mat-icon>{{continueText}}</button>
+        <button mat-button color="warn" [mat-dialog-close]="false"><mat-icon>cancel</mat-icon>{{abortText}}</button>
+    </div>
+</div>

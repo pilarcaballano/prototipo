@@ -1,0 +1,19 @@
+:host {
+    flex-grow: 1;
+    width: 410px;
+}
+.link {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.container{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px 10px;
+
+    margin-bottom: 0; //Para evitar que el matRipple descuadre la tarjeta
+
+    * {
+        flex-grow: 1;
+    }
+}

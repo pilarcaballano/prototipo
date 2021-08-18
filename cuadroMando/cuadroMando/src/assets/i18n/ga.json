@@ -1,0 +1,15 @@
+{
+  "label.titulo" : "Comunicación por correo electrónico para a notificación na acción de inspección",
+  "label.provincia" : "Provincia",
+  "label.os" : "Orde de servizo",
+  "label.fecha.diligencia" : "Data de dilixencia",
+  "label.nif.empresa" : "NIF da empresa",
+  "label.email" : "Correo electrónico",
+  "label.enviar" : "Enviar",
+  "label.campo.obligatorio" : "* Este campo é necesario",
+  "error.campo.obligatorio" : "Este campo é necesario",
+  "error.campo.email" : "O correo electrónico non ten o formato correcto",
+  "error.formato.os" : "Formato de OS incorrecto",
+  "error.formato.nif" : "Formato de identificador incorrecto",
+  "error.validez.nif" : "O NIF non é válido"
+}

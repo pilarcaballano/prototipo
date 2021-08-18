@@ -1,0 +1,131 @@
+<!--<p>detalle-orden-servicio works!</p>-->
+<div class="container">
+
+  <!-- Control Crear OS-->
+  <button *ngIf="!(flagAlta || flagEdicion)" mat-fab color="primary" class="new-os-button"
+    matTooltip="Generar nueva Orden de Servicio" routerLink="/detalleOrden">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <section class="os-container">
+    <h2>Orden de Servicio<span *ngIf="detalleOrdenServicio.id">: {{detalleOrdenServicio.id}}</span></h2>
+    <!-- Formulario OS-->
+    <form novalidate [formGroup]="detalleOsForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+      <!-- Barra de botones-->
+      <div class="os-controls">
+        <!--Control Editar-->
+        <button mat-icon-button (click)="editar($event)" *ngIf="!flagEdicion && !flagAlta"
+          matTooltip="Habilita la edición de la Orden de Servicio">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <!-- Control Guardar -->
+        <button mat-icon-button type="submit" *ngIf="flagEdicion || flagAlta"
+          matTooltip="Guarda los cambios de la Orden de Servicio.">
+          <mat-icon>save</mat-icon>
+        </button>
+
+        <!--Control Cancelar-->
+        <button mat-icon-button (click)="cancelar($event)" *ngIf="flagEdicion"
+          matTooltip="Descarta los cambios realizados en la Orden de Servicio.">
+          <mat-icon>cancel</mat-icon>
+        </button>
+
+        <!-- Control Cancelar Alta -->
+        <button mat-icon-button routerLink="/consultaOS" *ngIf="flagAlta"
+          matTooltip="Cancela el alta de la Orden de Servicio.">
+          <mat-icon>cancel</mat-icon>
+        </button>
+
+        <!-- Control Eliminar -->
+        <button mat-icon-button *ngIf="flagEdicion" (click)="borrarOS($event)" matTooltip="Borra la orden de Servicio.">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <!--Control volver-->
+        <cuadro-back-button *ngIf="!(flagAlta || flagEdicion)" class="back" type="icon"></cuadro-back-button>
+
+
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Campos Formulario -->
+      <div class="os-forms-container">
+        <!-- Campo OS-->
+        <mat-form-field>
+          <input matInput placeholder="Orden Servicio" type="text" formControlName="id" />
+        </mat-form-field>
+
+        <!-- Campo Estado-->
+        <mat-form-field>
+          <mat-select matSelect placeholder="Estado" type="text" formControlName="estadoID">
+            <mat-option>Selecciona un Estado</mat-option>
+            <mat-option *ngFor="let estados of estados" [value]="estados.estadoID">{{estados.estado}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formEstado.hasError('required')">
+            Es necesario informar un estado.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Campo Provincia-->
+        <mat-form-field>
+          <mat-select matSelect placeholder="Provincia" type="text" formControlName="codProvincia">
+            <mat-option>Selecciona una provincia</mat-option>
+            <mat-option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.descProvincia}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formCodProvincia.hasError('required')">
+            Es necesario informar una provincia.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Campo Fecha Creacion-->
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Fecha Creación" formControlName="fechaCreacion">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Campo Usuario Creacion-->
+        <mat-form-field>
+          <input matInput placeholder="Usuario Creación" type="text" formControlName="usuarioCreacion" />
+        </mat-form-field>
+
+        <!-- Hidden ID usuario Creacion-->
+        <input type="hidden" formControlName="usuarioCreacionID">
+
+        <!-- Campo Actuantes-->
+        <mat-form-field>
+          <input matInput placeholder="Actuante" type="text" formControlName="actuantes" readonly="true" />
+          <cuadro-control-actuante *ngIf="!formActuante.value" matSuffix [disabled]="!(flagEdicion || flagAlta)"
+            (actuanteSeleccionado)="asignarActuante($event)"></cuadro-control-actuante>
+          <button *ngIf="formActuante.value" [disabled]="!(flagEdicion || flagAlta)" matSuffix mat-icon-button
+            aria-label="Clear" (click)="borrarActuante($event)">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="formActuante.hasError('required')">
+            Es necesario asignar un actuante a la Orden de servicio.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Hidden ID usuario Creacion-->
+        <input type="hidden" formControlName="actuantesID">
+
+        <!-- Campo Observaciones-->
+        <mat-form-field class="control-big">
+          <textarea matInput placeholder="Observaciones" type="text" formControlName="observaciones"
+            rows="6"></textarea>
+          <mat-error *ngIf="formObservaciones.hasError('required')">
+            Es necesario rellenar el campo de observaciones.
+          </mat-error>
+          <mat-error *ngIf="formObservaciones.hasError('minlength')">
+            La observación debe tener al menos 10 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+    </form>
+  </section>
+</div>
