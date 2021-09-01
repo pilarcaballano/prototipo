@@ -6,6 +6,7 @@ import { PaginaNoEncontradaComponent } from '../pagina-no-encontrada/pagina-no-e
 import { DetalleActasComponent } from '../accionInspectora/actas/detalle-actas/detalle-actas.component';
 import { ConsultaOrdenServicioComponent } from '../accionInspectora/orden-servicio/consulta-orden-servicio/consulta-orden-servicio.component';
 import { ComCorreoComponent } from '../com-correo/com-correo.component';
+import { SolicitudesPdtsComponent } from '../com-correo/solicitudes-pdts/solicitudes-pdts.component';
 
 const routes: Routes = [
   { path: "home", component: MandoComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "detalleActas",  component: DetalleActasComponent },
   { path: "detalleActas/:id",  component: DetalleActasComponent },
   { path: "comcorreo", component:  ComCorreoComponent},
+  { path: "solicitudes-pendientes", component:  SolicitudesPdtsComponent},
 
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "pagina-no-encontrada", component: PaginaNoEncontradaComponent },

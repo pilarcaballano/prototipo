@@ -1,0 +1,31 @@
+.table-container {
+    overflow: auto;
+    max-height: 500px;
+
+    th {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+}
+
+.filter-container{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 15px;
+
+    > mat-form-field{
+        width: 220px;
+    }
+
+    > button {
+        margin-left: auto;
+    }
+}
+
+.button-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    gap: 5px
+}

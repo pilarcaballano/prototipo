@@ -1,0 +1,37 @@
+<div style="margin: 20px;">
+    <p style="text-align: center; margin-top: 20px;">Solicitudes Pendientes</p>
+    <ag-grid-angular
+    #agGrid
+    style="width: 100%; margin-top: 10px"
+    id="myGrid"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [suppressDragLeaveHidesColumns]="true" 
+    [suppressMakeColumnVisibleAfterUnGroup]="true"
+    domLayout='autoHeight'
+    [rowGroupPanelShow]="rowGroupPanelShow"
+    [localeText]="localeText"
+    (gridReady)="onGridReady($event)"
+    (rowSelected)="gestionarBotonAceptar()"
+>
+</ag-grid-angular>
+</div>
+
+<div style="margin: 20px; text-align: right;">
+    <button mat-raised-button color="primary"
+    style="margin-right: 10px;"
+    [disabled]="mostrarBoton"
+    type="button"
+    (click)="rechazarNotificacion()">
+    Rechazar
+  </button>
+    <button mat-raised-button color="primary"
+      [disabled]="mostrarBoton"
+      type="button"
+      (click)="aceptarNotificacion()">
+      Aceptar
+    </button>
+</div>

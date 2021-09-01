@@ -35,19 +35,19 @@ export class ComunicacioncorreoService {
   }
 
   getSolicitudesPendientes(): Observable<any> {
-    return this.http.get(environment.cuadroMandoURL + "solicitudes-pendientes", {headers: this.JSON_HEADER })
+    return this.http.get(environment.cuadroMandoURL + "api/comcorreo/solicitudes-pendientes", {headers: this.JSON_HEADER })
     .pipe(retry(3), catchError(err => this.handleHttpError(err)));
   }
 
   async getNumSolicitudesPendientes(): Promise<any> {
-    return this.http.get(environment.cuadroMandoURL + "num-solicitudes-pendientes", {headers: this.JSON_HEADER })
+    return this.http.get(environment.cuadroMandoURL + "api/comcorreo/num-solicitudes-pendientes", {headers: this.JSON_HEADER })
     .pipe(retry(3), catchError(err => this.handleHttpError(err)))
     .toPromise();
   }
 
   async getNumSolicitudes(): Promise<any> {
 
-    return this.http.get(environment.cuadroMandoURL + "num-solicitudes-pendientes", {headers: this.JSON_HEADER })
+    return this.http.get(environment.cuadroMandoURL + "api/comcorreo/num-solicitudes-pendientes", {headers: this.JSON_HEADER })
     .pipe(retry(3), catchError(err => this.handleHttpError(err)))
     .toPromise();
   }
@@ -55,14 +55,14 @@ export class ComunicacioncorreoService {
   aceptarNotificacionCE(notificacionesCorreoElec: NotificacionCorreoElectronico): Observable<any> {
 
     return this.http
-      .post(environment.cuadroMandoURL + "aceptarNotificacion", notificacionesCorreoElec, { headers: this.JSON_HEADER  })
+      .post(environment.cuadroMandoURL + "api/comcorreo/aceptarNotificacion", notificacionesCorreoElec, { headers: this.JSON_HEADER  })
       .pipe(catchError( err => this.handleHttpError(err)));     
   }
 
   rechazarNotificacionCE(notificacionesCorreoElec: any): Observable<any> {
 
     return this.http
-      .post(environment.cuadroMandoURL + "rechazarNotificacion", notificacionesCorreoElec, { headers: this.JSON_HEADER  })
+      .post(environment.cuadroMandoURL + "api/comcorreo/rechazarNotificacion", notificacionesCorreoElec, { headers: this.JSON_HEADER  })
       .pipe(catchError( err => this.handleHttpError(err)));;
   }
 

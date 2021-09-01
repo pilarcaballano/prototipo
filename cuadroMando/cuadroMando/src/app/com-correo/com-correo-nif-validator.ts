@@ -33,8 +33,7 @@ export class ComCorreoNifValidator implements AsyncValidator{
   
 
       const obs = this.http.get<boolean>(
-        // environment.apiURL +
-         'checkNif?nifEmpresa=' + control.value, {headers})
+        environment.cuadroMandoURL + "api/comcorreo/checkNif?nifEmpresa=" + control.value, {headers})
           .pipe(
               map((isUsed) => {
                   // null no error, object for error

@@ -7,12 +7,16 @@ import { ComCorreoComponent } from './com-correo.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AgGridModule } from 'ag-grid-angular';
+import { SolicitudesPdtsComponent } from './solicitudes-pdts/solicitudes-pdts.component';
+import { ComunicacioncorreoService } from '../core/com-correo/comunicacioncorreo.service';
 
 
 
 @NgModule({
   declarations: [
-    ComCorreoComponent 
+    ComCorreoComponent,
+    SolicitudesPdtsComponent
   ],
   imports: [
     CommonModule,
@@ -25,8 +29,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
         },
         deps: [ HttpClient ]
       }
-    })
+    }),
+    AgGridModule.withComponents([]),
   ],
-  // providers: [ComCorreoService]
+  exports: [
+    ComCorreoComponent,
+    SolicitudesPdtsComponent
+  ],
+  providers: [ComunicacioncorreoService]
 })
 export class ComCorreoModule { }

@@ -3,11 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { Provincia } from '../model/mando/Provincia';
 import { NotificacionCorreoElectronico } from '../model/comunicacionCorreo/notificacionCorreoElectronico';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-// import { AcceptDialogComponent } from '../accept-dialog/accept-dialog.component';
 import { ComCorreoNifValidator } from './com-correo-nif-validator';
 import { TranslateService } from '@ngx-translate/core';
 import { OrdenServicioService } from '../core/accionInspectora/orden-servicio.service';
 import { ComunicacioncorreoService } from '../core/com-correo/comunicacioncorreo.service';
+import { AcceptDialogComponent } from '../dialogs/accept-dialog/accept-dialog.component';
 
 @Component({
   selector: 'cuadro-com-correo',
@@ -18,6 +18,7 @@ import { ComunicacioncorreoService } from '../core/com-correo/comunicacioncorreo
 export class ComCorreoComponent implements OnInit {
 
   fontSize = 14;
+  margin = 15;
   @ViewChild('body', {static: true}) body!: ElementRef;
 
   private el!: ElementRef;
@@ -42,19 +43,13 @@ export class ComCorreoComponent implements OnInit {
     this.changeFont('');
     this.obtenerProvincias();
     this.iniciarNotificacionCE();
-    // this.notificacionCorreoElectronico = {
-    //   codigoNotificacion: 0,
-    //   codigoOS: "",
-    //   fechaDiligencia: "",
-    //   nifEmpresa: "",
-    //   correoElectronico: "",
-    //   strFechaDiligencia: ""
-    // };
   }
 
   changeFont(operator : string){
     operator === '+' ? this.fontSize++ : this.fontSize--;
+    operator === '+' ? this.margin++ : this.margin--;
     document.getElementsByTagName('body')[0].style.fontSize  = `${this.fontSize}px`;
+    document.getElementsByTagName('body')[0].style.margin  = `${this.margin}px`;
   } 
 
   public cambiarLenguaje(lang: string) {
@@ -69,7 +64,7 @@ export class ComCorreoComponent implements OnInit {
 
       this.comcorreo.crearNotificacionCE(this.notificacionCorreoElectronico)
                     .subscribe((notificacionCorreoElectronico: NotificacionCorreoElectronico) => {
-                      // this.openDialog();
+                      this.openDialog();
                       this.nuevaNotCEForm.reset();              
                     });
     } else {
@@ -97,9 +92,8 @@ export class ComCorreoComponent implements OnInit {
       codigoOS: [null, [Validators.required, Validators.pattern('[0-9]{1,2}\/[0-9]{7}\/[0-9]{2}')]],
       fechaDiligencia: [null,[Validators.required]],
       nifEmpresa: [null,Validators.compose([Validators.required,
-                      Validators.pattern('^[0-9]{8}[a-zA-Z]{1}$')])
-                      // ,
-                      // this.comCorreoNifValidator.validate.bind(this.comCorreoNifValidator)
+                      Validators.pattern('^[0-9]{8}[a-zA-Z]{1}$')]),
+                      this.comCorreoNifValidator.validate.bind(this.comCorreoNifValidator)
                     ],
                       
       correoElectronico: [null, [Validators.required, Validators.email]]
@@ -113,18 +107,18 @@ export class ComCorreoComponent implements OnInit {
     })
   }
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(AcceptDialogComponent, {
-  //     width: '450px',
-  //     data: { titulo: 'Operación completada',
-  //             cuerpo: 'Su petición ha sido enviada y será procesada.',
-  //             boton: 'Aceptar' }
-  //   });
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AcceptDialogComponent, {
+      width: '450px',
+      data: { titulo: 'Operación completada',
+              cuerpo: 'Su petición ha sido enviada y será procesada.',
+              boton: 'Aceptar' }
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.nuevaNotCEForm.reset();
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      this.nuevaNotCEForm.reset();
+    });
+  }
 
   public hasError = (controlName: string, errorName: string) =>{
     // console.log(controlName + " " +this.nuevaNotCEForm.controls[controlName].hasError(errorName)
